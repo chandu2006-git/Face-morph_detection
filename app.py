@@ -70,7 +70,7 @@ st.markdown("""
     background: #ffffff;
     border: 1px solid #E5E7EB;
     border-radius: 18px;
-    padding: 18px 20px 20px;
+    padding: 16px 20px 20px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 .card-title {
@@ -79,7 +79,11 @@ st.markdown("""
     color: #9ca3af;
     letter-spacing: .1em;
     text-transform: uppercase;
-    margin-bottom: 14px;
+    margin: 0 0 12px 0;
+    line-height: 1;
+    position:relative;
+    top:-22px;
+    left: 22px;        
 }
 
 /* ════════════════════════════════════════
@@ -123,8 +127,24 @@ st.markdown("""
     margin-bottom: 10px !important;
 }
 [data-testid="stFileUploader"] section { padding: 6px 0 !important; }
-[data-testid="stFileUploader"] label   { display: none !important; }
+[data-testid="stFileUploader"] label {
+    visibility:hidden !important;
+    height:0px !important;
+}
+[data-testid="stFileUploader"] small {
+    display:none !important;
+}
 
+.stFileUploader{
+    margin-top:-80px;
+}                        
+[data-testid="stFileUploader"] button {
+    background:#5865f2 !important;
+    color:white !important;
+    border:none !important;
+    border-radius:10px !important;
+    font-weight:600 !important;
+}            
 /* ── Analyze Again button ── */
 .stButton > button {
     background: linear-gradient(135deg, #5865f2, #818cf8) !important;
@@ -338,6 +358,7 @@ left, center, right = st.columns([1.15, 1.85, 1.0], gap="medium")
 # ══════════════════════════════════════════════════════════════════════════════
 with left:
     st.markdown('<div class="card">', unsafe_allow_html=True)
+    st.markdown('<div style="height:6px"></div>', unsafe_allow_html=True)
     st.markdown('<div class="card-title">📁 Input Image</div>', unsafe_allow_html=True)
 
     uploaded_file = st.file_uploader("", type=["jpg", "jpeg", "png"])
@@ -438,7 +459,7 @@ with center:
         </div>"""
 
         # Render top row via HTML grid + Streamlit chart injected between
-        c1, c2, c3 = st.columns([1, 1.5, 1])
+        c1, c2, c3 = st.columns([1,1.5,1])
 
         with c1:
             st.markdown(verdict_html, unsafe_allow_html=True)
@@ -452,8 +473,6 @@ with center:
 
         with c3:
             st.markdown(score_html, unsafe_allow_html=True)
-
-
         # Extra spacer so prob cards render below the tallest row element
         st.markdown('<div style="height:4px"></div>', unsafe_allow_html=True)
 
@@ -484,7 +503,13 @@ with center:
             textinfo="none", hoverinfo="none",
         )])
         fig_empty.update_layout(
-            height=210, margin=dict(l=8, r=8, t=8, b=30),
+            height=220,
+            margin=dict(
+                l=0,
+                r=0,
+                t=0,
+                b=0
+            ),
             showlegend=False, paper_bgcolor="rgba(0,0,0,0)",
         )
 
@@ -503,12 +528,6 @@ with center:
           </div>
         </div>
         """, unsafe_allow_html=True)
-
-        _c1, _c2, _c3 = st.columns([1, 1.5, 1])
-        with _c2:
-            st.markdown('<div style="margin-top:-228px;">', unsafe_allow_html=True)
-            st.plotly_chart(fig_empty, use_container_width=True, config={"displayModeBar": False})
-            st.markdown('</div>', unsafe_allow_html=True)
 
         st.markdown('<div style="height:4px"></div>', unsafe_allow_html=True)
 

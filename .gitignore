@@ -1,52 +1,5 @@
-# Virtual Environments
-venv/
-# Virtual Environment
-morph_220/
-venv/
-env/
-
-# frontend 
-frontend/
-
-# backend 
-
-backend/
-# Python Cache
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# Jupyter
-.ipynb_checkpoints/
-# Deployment Files Not Needed For Streamlit
-render.yaml
-Procfile
-vercel.json
-
-# IDE
-.vscode/
-.idea/
-
-# OS Files
-# OS
-.DS_Store
-Thumbs.db
-
-# Environment Variables
-.env
-
-# Logs
-*.log
-
-# TensorFlow Training Files
-*.weights.h5
 
 # Ignore Training Models
 model/inception_model_v2.keras
 model/inception_weights_v2.weights.h5
 
-# Keep Deployment Model
-!model/final_deployment_model.keras
-backend/
-frontend/
